@@ -1,43 +1,32 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-
 require 'src/consts.php';
 require 'src/funcs.php';
 
-class FuncsTest extends TestCase {
-    private $morse_map;
+it("can do basic conversion", function() {
+    $this->assertEquals(".... . .-.. .-.. --- / .-- --- .-. .-.. -..", 
+        text_to_morse("HELLO WORLD"));
+});
 
-    protected function setUp(): void {
-        global $morse_map;
-        $morse_map = MORSE_MAP;
-    }
-
-    public function testBasicConversion() {
-        $this->assertEquals(".... . .-.. .-.. --- / .-- --- .-. .-.. -..", 
-            text_to_morse("HELLO WORLD"));
-    }
-
-    public function testEmptyString() {
-        $this->assertEquals("", text_to_morse(""));
-    }
-
-    public function testSingleLetter() {
-        $this->assertEquals(".-", text_to_morse("A"));
-    }
-
-    public function testMultipleSpaces() {
-        $this->assertEquals(".... .. / - .... . .-. .", 
-            text_to_morse("HI  THERE"));
-    }
-
-    public function testUnknownCharacters() {
-        $this->assertEquals("-- .- - .... ..", 
-            text_to_morse("MATHI!123"));
-    }
-
-    public function testMixedCaseWithNumbers() {
-        $this->assertEquals("... --- ... / ... --- ...", 
-            text_to_morse("SOS 123 ! sos"));
-    }
+it("can handle an empty string", function() {
+    $this->assertEquals("", text_to_morse(""));
 }
+);
+it("can convert a single letter", function() {
+    $this->assertEquals(".-", text_to_morse("A"));
+}
+);
+it("can handle multiple spaces", function() {
+    $this->assertEquals(".... .. / - .... . .-. .", 
+        text_to_morse("HI  THERE"));
+});
+
+it("can handle unknown characters", function() {
+    $this->assertEquals("-- .- - .... ..", 
+        text_to_morse("MATHI!123"));
+});
+
+it("can convert mixed case with numbers", function() {
+    $this->assertEquals("... --- ... / ... --- ...", 
+        text_to_morse("SOS 123 ! sos"));
+});
