@@ -59,7 +59,7 @@ function morse_to_text(string $input): string {
         array_push($words, implode("", $letters));
     }
 
-    return implode(" ", $words) . PHP_EOL;
+    return implode(" ", $words);
 }
 
 /**
@@ -87,7 +87,7 @@ function text_to_morse(string $input): string {
         array_push($morse_words, implode(" ", $morse_letters));
     }
 
-    return implode(" / ", $morse_words) . PHP_EOL;
+    return implode(" / ", array_filter($morse_words) );
 }
 
 function print_version(): void {
