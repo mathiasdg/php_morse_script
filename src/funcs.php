@@ -71,11 +71,11 @@ function morse_to_text(string $input): string {
 function text_to_morse(string $input): string {
     $morse_map = MORSE_MAP;
     $morse_words = [];
-
-    $words = explode(" ", $input);
+    
+    $words = array_filter( explode(" ", $input) );
 
     foreach ($words as $word) {
-        $letters = str_split(strtoupper($word));
+        $letters = str_split(strtoupper(trim($word)));
 
         $morse_letters = [];
 
