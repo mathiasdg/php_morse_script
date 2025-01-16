@@ -10,3 +10,5 @@ if ($argc > 1) {
 } else {
     run_program();
 }
+
+echo PHP_EOL;
