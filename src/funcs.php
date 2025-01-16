@@ -1,4 +1,8 @@
 <?php
+
+use function Laravel\Prompts\select;
+use function Laravel\Prompts\text;
+
 /**
  * Runs a program that allows the user to encode a string to Morse code or decode Morse code to text.
  *
@@ -10,22 +14,32 @@
  * 
  */
 function run_program($args = null): void {
+    
     $direction = null;
     
     if (!$args) {
         while ($direction !== "e" && $direction !== "d") {
-            $direction = readline("Wil je een string coderen of een morsecode decoderen? ([e]ncode,[d]ecode): " . PHP_EOL);
+            $direction = select("Wil je een string coderen of een morsecode decoderen?", ['e' => 'coderen', 'd' => 'decoderen']);
         }
     } else {
         $direction = $args;
     }
         
     if ($direction === "e") {
-        $input = readline("Geef een string op om morsig te maken: ") . PHP_EOL;
+        $input = text(
+            "Geef een string om morsig te maken:",
+            "typ maar hoor"
+    );
         echo text_to_morse($input);
+
     } else if ($direction === "d") {
-        $input = readline("Geef een morsecode om te ontcijferen: ") . PHP_EOL;
+        $input = text(
+            "Geef een morsecode om te ontcijferen:",
+            "- -.-- .--. / -- .- .- .-. / .... --- --- .-.",
+            hint: ". voor kort - voor lang (spatie) tussen letters / tussen woorden ",
+        );
         echo morse_to_text($input);
+        
     } else {
         echo "er ging iets mis!" . PHP_EOL;
         exit();
