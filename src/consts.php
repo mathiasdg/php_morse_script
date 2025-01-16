@@ -2,7 +2,7 @@
 
 const VERSION = "0.69.0";
 
-$morse_map = [
+const MORSE_MAP = [
     "A" => ".-",
     "B" => "-...",
     "C" => "-.-.",

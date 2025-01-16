@@ -39,7 +39,7 @@ function run_program($args = null): void {
  * @return string The text equivalent of the input Morse code.
  */
 function morse_to_text(string $input): string {
-    global $morse_map;
+    $morse_map = MORSE_MAP;
     $words = [];
 
     $morse_words = explode("/", $input);
@@ -69,7 +69,7 @@ function morse_to_text(string $input): string {
  * @return string The Morse code equivalent of the input text string.
  */
 function text_to_morse(string $input): string {
-    global $morse_map;
+    $morse_map = MORSE_MAP;
     $morse_words = [];
 
     $words = explode(" ", $input);
